@@ -1,0 +1,21 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Cinzel', serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Cinzel Decorative', cursive;
+	color: #333333;
+	font-size: 24px;
+	line-height: 36px;
+} 
+
+
+.container {
+	width: 1000px;
+	margin: 50px auto;
+	  
+} 
