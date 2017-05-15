@@ -6,10 +6,10 @@ var wordSelect = "";
 //collection of words to use in game 
 var wordLibrary = "guitar"; 
 
-var instrumentWords = ['guitar', 'trumpet', 'drums', 'violin', 'cello', 'saxophone', 'tuba'];
+var gotWords = ['targaryen', 'throne', 'westeros', 'blackfyre', 'stark', 'reyne', 'dragon', 'dragonloards'];
 
 //random selection of word.  
-var wordChoice = instrumentWords[Math.floor(Math.random() * instrumentWords.length)];  
+var wordChoice = gotWords[Math.floor(Math.random() * gotWords.length)];  
 
 
 
@@ -20,7 +20,8 @@ for ( var i = 0; i < wordChoice.length; i++ ) {
 } 	
 
 console.log(wordChoice);
-//document.querySelector('#wordSelect').innerHTML = wordSelect; 
+
+document.querySelector('#wordSelect').innerHTML = wordSelect; 
 
 //getElementById('')
 
