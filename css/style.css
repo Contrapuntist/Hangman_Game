@@ -3,19 +3,42 @@
 }
 
 body {
+	
+	background-image: url('../images/stone-background.jpg'); 
 	font-family: 'Cinzel', serif;
+	color: #ffffff;
 }
 
 h1, h2, h3, h4, h5, h6 {
 	font-family: 'Cinzel Decorative', cursive;
-	color: #333333;
+	color: #ffffff;
 	font-size: 24px;
 	line-height: 36px;
 } 
 
+div {
+	margin-bottom: 25px;
+}
+
+.margintpbtm20 {
+	padding: 50px
+
+	margin-top: 20px
+	margin-bottom: 40px;
+} 
 
 .container {
 	width: 1000px;
 	margin: 50px auto;
 	  
 } 
+
+.banner {
+	width: 1000px;
+	display: block;
+} 
+
+.banner img {
+	width: 900px;
+	margin: 0 auto;
+}
