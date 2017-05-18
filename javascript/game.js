@@ -21,7 +21,7 @@ var wordChoice = gotWords[Math.floor(Math.random() * gotWords.length)];
 for ( var i = 0; i < wordChoice.length; i++ ) { 
 	wordSelect[i] = " _";
 	console.log(wordSelect);
-	document.querySelector('#wordSelect').innerHTML = wordSelect;
+	document.querySelector('#wordSelect').innerHTML = wordSelect.join(" ");
 } 	
 
 console.log(wordChoice);
@@ -59,7 +59,7 @@ function letterMatch(letter) {
 		} 
 	}
 	
-	document.querySelector('#wordSelect').innerHTML = wordSelect;
+	document.querySelector('#wordSelect').innerHTML = wordSelect.join(' ');
 	console.log(charMatch); 
 }
 
@@ -70,5 +70,3 @@ function gameCounter () {
 	}
 
 }
-
-
