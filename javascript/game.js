@@ -64,8 +64,22 @@ function letterMatch(letter) {
 
 function gameCounter () {
 
-	if (charMatch !== true) {
+	if (charMatch !== true && hangman > 0) {
 		hangman = hangman - 1;
 	}
 
 } 
+
+/*
+function gameState () { 
+
+	var gameImg = document.getElementById('gameStatusImg');
+	gameImg.innerHTML = '<img src='images/johnsnow-winteriscoming.jpg' width="300px">';
+
+	if (hangman > 0 ) {
+
+	}
+
+} 
+
+*/
