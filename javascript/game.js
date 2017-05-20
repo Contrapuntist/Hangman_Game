@@ -1,14 +1,18 @@
+// I'm struggling a little bit with code organization. I'd like to know if there a good practice I should follow?
+// Or, if there are some bad practices to avoid? 
+
+
 
 // Variable declarations 
-var userChoice = ""; 
-var wordSelect = []; 
-var charMatch = null;
-var charUsed = [];
+var userChoice = "";		// tracks the key user chooses 
+var wordSelect = [];     	// array for underscores to appear
+var charMatch = null;		// used to track if userChoice in word
+var charUsed = [];			// array for selected letters 
 var fullAlphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']; 
-var hangman = 7;  // Live left 
-var gameImg = null;
-var newImg = null;
-var spaceCount = null; 
+var hangman = 7;  			// Used to track moves left before player loses 
+var gameImg = null; 		// for img creation
+var newImg = null;			// changes img source 
+var spaceCount = null;  	// tracks the number of spaces left for win state 
 var snd = new Audio("sounds/Swords_Collide.mp3");
 
 // Collection of words to use in game 
@@ -17,7 +21,6 @@ var gotWords = ['targaryen', 'throne', 'westeros', 'blackfyre', 'stark', 'reyne'
 // Random selection of word.  
 var wordChoice = gotWords[Math.floor(Math.random() * gotWords.length)];  
 spaceCount = wordChoice.length; 
-console.log("Space counter begins at:" + spaceCount);
 
 // Loop for determining length of selected word and how many underscores to print to screen 
 for ( var i = 0; i < wordChoice.length; i++ ) { 	
@@ -25,41 +28,13 @@ for ( var i = 0; i < wordChoice.length; i++ ) {
 	document.querySelector('#wordSelect').innerHTML = wordSelect.join(" ");
 } 	
 
-// Know what word is selected from array gotWords to help with debugging   
-console.log(wordChoice);
-
-// Document.querySelector('#wordSelect').innerHTML = wordSelect; 
+// Prints moves left and initial game state at start and refresh (F5 hit)
 document.querySelector('#movesLeft').innerHTML = hangman; 
-
 document.querySelector('#gameStatusTxt').innerHTML = "Game On"
 
-// Taking in user input on key press and printing results of choice to HTML 
-document.onkeyup = function(event) {
 
-	userChoice = event.key;  
-
-	// checks if userChoice is an in alphabet. If true, then magic happens. 
-	if ( fullAlphabet.indexOf(userChoice) !== -1  ) { 
-
-		charUsed.push(" " + userChoice);
-		letterMatch(userChoice);
-		gameCounter(charMatch);
-		document.querySelector('#userChoice').innerHTML = userChoice; 
-		document.querySelector('#alphaUsed').innerHTML = charUsed;
-		document.querySelector('#movesLeft').innerHTML = hangman;
-		snd.play();
-	} 
-	
-	// Win or Lose condition statement. Changes img and txt 
-	if ( hangman === 0 ) {
-		newImg.src = "images/game-of-thrones-arise.gif";
-		document.querySelector('#gameStatusTxt').innerHTML = "You've been turned to a whitewalker"
-	} else if (spaceCount === 0 ) {  
-		newImg.src = "images/whitewalkerdead.gif"; 
-		document.querySelector('#gameStatusTxt').innerHTML = "You've defeated a whitewalker"
-	}   
-
-}
+// Know what word is selected from array gotWords to know what word was randomly selected   
+// console.log(wordChoice);
 
 //function that checks whether user choice is in the word
 function letterMatch(letter) {
@@ -77,6 +52,7 @@ function letterMatch(letter) {
 	document.querySelector('#wordSelect').innerHTML = wordSelect.join(' ');
 }
 
+// function tracks lives left 
 function gameCounter () {
 	if (charMatch !== true && hangman > 0) {
 		hangman = hangman - 1;
@@ -96,12 +72,30 @@ function gameState () {
 // call function to create img on screen/HTML 
 gameState(); 
 
+// Taking in user input on key press and printing results of choice to HTML 
+document.onkeyup = function(event) {
 
-/*   Code Lauren helped me with; used above in gameState function 
+	userChoice = event.key;  
 
-		var targetdiv = <grab parent div>
-		var img = document.createElement('img') 
-		newimg.src = < img path> 
-		targetDiv.appendChild(newimg)
+	// checks if userChoice is an in alphabet. If true, then magic happens. 
+	if ( fullAlphabet.indexOf(userChoice) !== -1  ) { 
 
-*/
+		charUsed.push(" " + userChoice);
+		letterMatch(userChoice);
+		gameCounter(charMatch);
+		document.querySelector('#userChoice').innerHTML = userChoice; 
+		document.querySelector('#alphaUsed').innerHTML = charUsed;
+		document.querySelector('#movesLeft').innerHTML = hangman;
+		snd.play();
+	} 
+	
+	// Win or Lose condition statement. Changes img and txt.  Hindsight, I probably could've placed in function.   
+	if ( hangman === 0 ) {
+		newImg.src = "images/game-of-thrones-arise.gif";
+		document.querySelector('#gameStatusTxt').innerHTML = "You've been turned to a whitewalker"
+	} else if (spaceCount === 0 ) {  
+		newImg.src = "images/whitewalkerdead.gif"; 
+		document.querySelector('#gameStatusTxt').innerHTML = "You've defeated a whitewalker"
+	}   
+
+}
