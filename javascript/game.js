@@ -9,6 +9,7 @@ var hangman = 7;
 var gameImg = null;
 var newImg = null;
 var spaceCount = null; 
+var snd = new Audio("sounds/Swords_Collide.mp3");
 
 // Collection of words to use in game 
 var gotWords = ['targaryen', 'throne', 'westeros', 'blackfyre', 'stark', 'reyne', 'dragon', 'dragonlords', 'winterfell', 'baratheon', 'whitewalker', 'kingsguard', 'braavos', 'warden', 'dothraki', 'pentos', 'lannister', 'tyrells', 'greyjoys', 'durrandon', 'bolton', 'arryn', 'blackwater', 'kingsroad', 'valyrian'];
@@ -45,6 +46,7 @@ document.onkeyup = function(event) {
 		document.querySelector('#userChoice').innerHTML = userChoice; 
 		document.querySelector('#alphaUsed').innerHTML = charUsed;
 		document.querySelector('#movesLeft').innerHTML = hangman;
+		snd.play();
 	} 
 	
 	// Win or Lose condition statement. Changes img and txt 
@@ -96,7 +98,6 @@ function gameCounter () {
 	}
 } 
 
-
 function gameState () { 
 
 	gameImg = document.getElementById('gameStatusImg');
@@ -106,7 +107,7 @@ function gameState () {
 	
 } 
 
-// call function at start or reset of game; default should be Jon Snow img with "Winter is Coming" text
+// call function to create img on screen/HTML "Winter is Coming" text
 gameState(); 
 
 
