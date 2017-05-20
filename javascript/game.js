@@ -5,7 +5,7 @@ var wordSelect = [];
 var charMatch = null;
 var charUsed = [];
 var fullAlphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']; 
-var hangman = 7;
+var hangman = 7;  // Live left 
 var gameImg = null;
 var newImg = null;
 var spaceCount = null; 
@@ -38,6 +38,7 @@ document.onkeyup = function(event) {
 
 	userChoice = event.key;  
 
+	// checks if userChoice is an in alphabet. If true, then magic happens. 
 	if ( fullAlphabet.indexOf(userChoice) !== -1  ) { 
 
 		charUsed.push(" " + userChoice);
@@ -58,22 +59,6 @@ document.onkeyup = function(event) {
 		document.querySelector('#gameStatusTxt').innerHTML = "You've defeated a whitewalker"
 	}   
 
-	// condition and Loop to see if user wins 
-	
-
-	/* early try to declare player wins 
-	if (hangman < 7 && hangman > 0) { 
-
-		for ( var i = 0; i < wordSelect.length; i++) {
-			
-			//replace img when player wins to Jon Snow killing whitewalker 
-			if ( wordSelect[i] !== "_" ) {
-				console.log(wordSelect[i]);
-				
-			}
-		}
-	} 
-	*/
 }
 
 //function that checks whether user choice is in the word
@@ -98,6 +83,7 @@ function gameCounter () {
 	}
 } 
 
+// function creates img tag and adds it to HTML
 function gameState () { 
 
 	gameImg = document.getElementById('gameStatusImg');
@@ -107,17 +93,15 @@ function gameState () {
 	
 } 
 
-// call function to create img on screen/HTML "Winter is Coming" text
+// call function to create img on screen/HTML 
 gameState(); 
 
 
-/* 
+/*   Code Lauren helped me with; used above in gameState function 
 
-Code Lauren helped me with; used above in gameState function 
-
-var targetdiv = <grab parent div>
-var img = document.createElement('img') 
-newimg.src = < img path> 
-targetDiv.appendChild(newimg)
+		var targetdiv = <grab parent div>
+		var img = document.createElement('img') 
+		newimg.src = < img path> 
+		targetDiv.appendChild(newimg)
 
 */
