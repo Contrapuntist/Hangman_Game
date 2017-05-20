@@ -30,15 +30,26 @@ div {
 .container {
 	width: 1000px;
 	margin: 50px auto;
-	  
+	display: flex;
+	justify-content: space-around;  
 } 
 
-.banner {
+.header {
 	width: 1000px;
-	display: block;
+	margin: 0 auto;
 } 
 
 .banner img {
 	width: 900px;
+	margin: 0 auto;
+} 
+
+.lftsection {
+	width: 450px;
+	margin: 0 auto;
+}
+
+.rtsection {
+	width: 450px;
 	margin: 0 auto;
 }

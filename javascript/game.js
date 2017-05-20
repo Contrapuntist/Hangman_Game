@@ -8,16 +8,18 @@ var fullAlphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 
 var hangman = 7;
 var gameImg = null;
 var newImg = null;
+var spaceCount = null; 
 
 // Collection of words to use in game 
 var gotWords = ['targaryen', 'throne', 'westeros', 'blackfyre', 'stark', 'reyne', 'dragon', 'dragonlords'];
 
 // Random selection of word.  
 var wordChoice = gotWords[Math.floor(Math.random() * gotWords.length)];  
+spaceCount = wordChoice.length; 
+console.log("Space counter begins at:" + spaceCount);
 
 // Loop for determining length of selected word and how many underscores to print to screen 
-for ( var i = 0; i < wordChoice.length; i++ ) { 
-	
+for ( var i = 0; i < wordChoice.length; i++ ) { 	
 	wordSelect[i] = " _";
 	document.querySelector('#wordSelect').innerHTML = wordSelect.join(" ");
 } 	
@@ -41,17 +43,33 @@ document.onkeyup = function(event) {
 		document.querySelector('#userChoice').innerHTML = userChoice; 
 		document.querySelector('#alphaUsed').innerHTML = charUsed;
 		document.querySelector('#movesLeft').innerHTML = hangman;
-
 	} 
 	
 	if ( hangman === 0 ) {
 		// if player loses, then gif of whitewalker king replaces Jon Snow img  
-		//newImg.src = "images/whitewalkerdead.gif";
-		gameImg.src="images/whitewalkerdead.gif";
-		console.log("you lose");
-		console.log(gameImg);
-	}
+		newImg.src = "images/game-of-thrones-arise.gif";
+	} else if (spaceCount === 0 ) { 
 
+		//if player wins, then gif  
+		newImg.src = "images/whitewalkerdead.gif"; 
+	}   
+
+	// condition and Loop to see if user wins 
+	
+
+	/* early try to declare player wins 
+	if (hangman < 7 && hangman > 0) { 
+
+		for ( var i = 0; i < wordSelect.length; i++) {
+			
+			//replace img when player wins to Jon Snow killing whitewalker 
+			if ( wordSelect[i] !== "_" ) {
+				console.log(wordSelect[i]);
+				
+			}
+		}
+	} 
+	*/
 }
 
 //function that checks whether user choice is in the word
@@ -63,20 +81,17 @@ function letterMatch(letter) {
 		if (letter == wordChoice.charAt(i) ) {
 			charMatch = true;
 			wordSelect[i] = " " + letter;
-			console.log(wordSelect)
-		} 
+			spaceCount -= 1;
+			console.log(spaceCount); 
+		} 		
 	}
-	
 	document.querySelector('#wordSelect').innerHTML = wordSelect.join(' ');
-
 }
 
 function gameCounter () {
-
 	if (charMatch !== true && hangman > 0) {
 		hangman = hangman - 1;
 	}
-
 } 
 
 
@@ -86,8 +101,7 @@ function gameState () {
 	newImg = document.createElement('img');
 	newImg.src = "images/johnsnow-winteriscoming.jpg";
 	gameImg.appendChild(newImg);
-	//gameImg.addId()
-	gameImg.setAttribute("id", "changeSrc");
+	
 } 
 
 // call function at start or reset of game; default should be Jon Snow img with "Winter is Coming" text
