@@ -11,7 +11,7 @@ var newImg = null;
 var spaceCount = null; 
 
 // Collection of words to use in game 
-var gotWords = ['targaryen', 'throne', 'westeros', 'blackfyre', 'stark', 'reyne', 'dragon', 'dragonlords'];
+var gotWords = ['targaryen', 'throne', 'westeros', 'blackfyre', 'stark', 'reyne', 'dragon', 'dragonlords', 'winterfell', 'baratheon', 'whitewalker', 'kingsguard', 'braavos', 'warden', 'dothraki', 'pentos', 'lannister', 'tyrells', 'greyjoys', 'durrandon', 'bolton', 'arryn', 'blackwater', 'kingsroad', 'valyrian'];
 
 // Random selection of word.  
 var wordChoice = gotWords[Math.floor(Math.random() * gotWords.length)];  
@@ -30,6 +30,8 @@ console.log(wordChoice);
 // Document.querySelector('#wordSelect').innerHTML = wordSelect; 
 document.querySelector('#movesLeft').innerHTML = hangman; 
 
+document.querySelector('#gameStatusTxt').innerHTML = "Game On"
+
 // Taking in user input on key press and printing results of choice to HTML 
 document.onkeyup = function(event) {
 
@@ -45,13 +47,13 @@ document.onkeyup = function(event) {
 		document.querySelector('#movesLeft').innerHTML = hangman;
 	} 
 	
+	// Win or Lose condition statement. Changes img and txt 
 	if ( hangman === 0 ) {
-		// if player loses, then gif of whitewalker king replaces Jon Snow img  
 		newImg.src = "images/game-of-thrones-arise.gif";
-	} else if (spaceCount === 0 ) { 
-
-		//if player wins, then gif  
+		document.querySelector('#gameStatusTxt').innerHTML = "You've been turned to a whitewalker"
+	} else if (spaceCount === 0 ) {  
 		newImg.src = "images/whitewalkerdead.gif"; 
+		document.querySelector('#gameStatusTxt').innerHTML = "You've defeated a whitewalker"
 	}   
 
 	// condition and Loop to see if user wins 

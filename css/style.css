@@ -7,6 +7,7 @@ body {
 	background-image: url('../images/stone-background.jpg'); 
 	font-family: 'Cinzel', serif;
 	color: #ffffff;
+	line-height: 24px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -22,7 +23,6 @@ div {
 
 .margintpbtm20 {
 	padding: 50px
-
 	margin-top: 20px
 	margin-bottom: 40px;
 } 
@@ -37,12 +37,26 @@ div {
 .header {
 	width: 1000px;
 	margin: 0 auto;
+	position: relative;
 } 
 
-.banner img {
+.header img {
 	width: 900px;
 	margin: 0 auto;
-} 
+}
+
+.hmtext {
+	position: absolute;
+	bottom: 0;
+	right: 115px;
+	
+}
+
+.hmtext h1 {
+	font-family: 'Metamorphous', cursive;
+	color: #C0C0C0;
+	font-size: 40px;
+}
 
 .lftsection {
 	width: 450px;
@@ -52,4 +66,14 @@ div {
 .rtsection {
 	width: 450px;
 	margin: 0 auto;
+}
+
+.gameStateTxt {
+	padding-bottom: 15px;
+} 
+
+.gameStateTxt h2 {
+	font-family: 'Metamorphous', cursive;
+	font-size: 28px;
+	color: #1C86EE;
 }
