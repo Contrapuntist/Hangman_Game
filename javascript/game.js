@@ -6,7 +6,8 @@ var charMatch = null;
 var charUsed = [];
 var fullAlphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']; 
 var hangman = 7;
-
+var gameImg = null;
+var newImg = null;
 
 // Collection of words to use in game 
 var gotWords = ['targaryen', 'throne', 'westeros', 'blackfyre', 'stark', 'reyne', 'dragon', 'dragonlords'];
@@ -30,7 +31,7 @@ document.querySelector('#movesLeft').innerHTML = hangman;
 // Taking in user input on key press and printing results of choice to HTML 
 document.onkeyup = function(event) {
 
-	userChoice = event.key; 
+	userChoice = event.key;  
 
 	if ( fullAlphabet.indexOf(userChoice) !== -1  ) { 
 
@@ -43,6 +44,14 @@ document.onkeyup = function(event) {
 
 	} 
 	
+	if ( hangman === 0 ) {
+		// if player loses, then gif of whitewalker king replaces Jon Snow img  
+		//newImg.src = "images/whitewalkerdead.gif";
+		gameImg.src="images/whitewalkerdead.gif";
+		console.log("you lose");
+		console.log(gameImg);
+	}
+
 }
 
 //function that checks whether user choice is in the word
@@ -70,16 +79,28 @@ function gameCounter () {
 
 } 
 
-/*
+
 function gameState () { 
 
-	var gameImg = document.getElementById('gameStatusImg');
-	gameImg.innerHTML = '<img src='images/johnsnow-winteriscoming.jpg' width="300px">';
-
-	if (hangman > 0 ) {
-
-	}
-
+	gameImg = document.getElementById('gameStatusImg');
+	newImg = document.createElement('img');
+	newImg.src = "images/johnsnow-winteriscoming.jpg";
+	gameImg.appendChild(newImg);
+	//gameImg.addId()
+	gameImg.setAttribute("id", "changeSrc");
 } 
+
+// call function at start or reset of game; default should be Jon Snow img with "Winter is Coming" text
+gameState(); 
+
+
+/* 
+
+Code Lauren helped me with; used above in gameState function 
+
+var targetdiv = <grab parent div>
+var img = document.createElement('img') 
+newimg.src = < img path> 
+targetDiv.appendChild(newimg)
 
 */
